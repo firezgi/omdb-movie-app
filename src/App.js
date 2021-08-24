@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import MovieCard from "./components/MovieCard";
+import { getMovieByIDAPI } from "./utils/utils";
 
 function App() {
+  let movieData = {};
+  let isMovieData = false;
+
+  window.onload = async () => {
+    const movieAPI = await getMovieByIDAPI("tt2975590");
+    sessionStorage.setItem("movieData", JSON.stringify(movieAPI));
+  };
+
+  if (sessionStorage.getItem("movieData")) {
+    movieData = JSON.parse(sessionStorage.getItem("movieData"));
+    isMovieData = true;
+  }
+
+  // console.log(movieData);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {isMovieData ? (
+        <MovieCard
+          title={movieData.Title}
+          type={movieData.Type}
+          posterUrl={movieData.Poster}
+        />
+      ) : (
+        "Hello"
+      )}
     </div>
   );
 }
