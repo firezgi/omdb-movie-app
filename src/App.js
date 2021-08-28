@@ -16,19 +16,19 @@ function App() {
     isMovieData = true;
   }
 
-  // console.log(movieData);
+  console.log(movieData);
 
   return (
     <div className="App">
-      {isMovieData ? (
-        <MovieCard
-          title={movieData.Title}
+       {isMovieData ? (
+        <MovieCard title={movieData.Title}
           type={movieData.Type}
           posterUrl={movieData.Poster}
         />
       ) : (
         "Hello"
-      )}
+      )} 
+      
     </div>
   );
 }

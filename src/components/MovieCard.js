@@ -11,6 +11,7 @@ const MovieCard = ({ posterUrl, title, type }) => (
     <h2 className="movie-card__title">{title}</h2>
 
     <span className="movie-card__type">{type}</span>
+    <h1>H</h1>
   </div>
 );
 
